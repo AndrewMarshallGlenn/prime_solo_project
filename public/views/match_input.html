@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="myApp">
+<head>
+  <title>Match Input</title>
+  <script type="text/javascript" src="/vendors/angular.min.js"></script>
+  <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/app.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/input_controller.js"></script>
+  <link rel="stylesheet" href="assets/styles/style.css"/>
+</head>
+<body ng-controller="InputController">
+<h1>Input Your Match Data</h1>
+
+<form>
+  Your Character:
+  <select ng-model="character" ng-options="char for char in charList"></select><br>
+  Opposing Character:
+  <select ng-model="Ocharacter" ng-options="char for char in charList"></select><br>
+
+  Round Results:
+  <div>
+  <input type="radio" ng-model="roundOne" value="win">Win
+  <input type="radio" ng-model="roundOne" value="loss">Loss
+  </div>
+  <div>
+  <input type="radio" ng-model="roundTwo" value="win">Win
+  <input type="radio" ng-model="roundTwo" value="loss">Loss
+  </div>
+  <div ng-show="roundThreeToggle()">
+  <input type="radio" ng-model="roundThree" value="win">Win
+  <input type="radio" ng-model="roundThree" value="loss">Loss
+  </div>
+  Notes:<br>
+  <textarea ng-model="notes"></textarea>
+</form>
+{{character}}<br>
+{{Ocharacter}}<br>
+{{roundOne}}<br>
+{{roundTwo}}<br>
+{{roundThree}}<br>
+{{notes}}
+
+
+<!--<main ng-view></main>-->
+</body>
+</html>

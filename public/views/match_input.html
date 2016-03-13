@@ -11,12 +11,17 @@
 <body ng-controller="InputController">
 <h1>Input Your Match Data</h1>
 
-<form>
+<form name="matchForm">
   Your Character:
   <select ng-model="character" ng-options="char for char in charList"></select><br>
   Opposing Character:
   <select ng-model="Ocharacter" ng-options="char for char in charList"></select><br>
-
+  Opposing Player's Relative Strength:
+  <div>
+    <input type="radio" ng-model="relStr" value="less">Weaker
+    <input type="radio" ng-model="relStr" value="same">Even
+    <input type="radio" ng-model="relStr" value="more">Stronger
+  </div>
   Round Results:
   <div>
   <input type="radio" ng-model="roundOne" value="win">Win
@@ -30,14 +35,17 @@
   <input type="radio" ng-model="roundThree" value="win">Win
   <input type="radio" ng-model="roundThree" value="loss">Loss
   </div>
+
   Notes:<br>
   <textarea ng-model="notes"></textarea>
 </form>
 {{character}}<br>
-{{Ocharacter}}<br>
+{{oCharacter}}<br>
 {{roundOne}}<br>
 {{roundTwo}}<br>
 {{roundThree}}<br>
+{{relStr}}<br>
+<p ng-show="matchResult()">{{winLoss}}</p>
 {{notes}}
 
 

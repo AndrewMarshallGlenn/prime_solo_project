@@ -9,12 +9,14 @@
   <script type="text/javascript" src="/vendors/angular.min.js"></script>
   <script type="text/javascript" src="/assets/scripts/app.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/dashboard_controller.js"></script>
+  <script type="text/javascript" src="/assets/scripts/factories/data_factory.js"></script>
+
 
 </head>
 <body ng-app="myApp">
 <div class="instructions" ng-controller="UserController">
   <div class="container">
-    <h1 id="welcome" class="lead">Welcome, {{userName}}!</h1>
+    <h1 id="welcome" class="lead">Welcome, {{playerName}}!</h1>
   </div>
 </div>
 <div id="dashboard" ng-controller="DashboardController">

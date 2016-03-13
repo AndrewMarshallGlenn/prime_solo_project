@@ -1,6 +1,8 @@
 myApp.factory('DataFactory', ['$http', function($http) {
     // PRIVATE
     var facMatchData = undefined;
+    var facUserIdNumber = undefined;
+    var facUserName = undefined;
 
     var facGetMatchData = function() {
         console.log('getting data from server');
@@ -21,6 +23,21 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
         return promise;
     };
+    var facGetUser = function(){
+        var promise = $http.get('/user').then(function(response) {
+            if(response.data) {
+                facUserName = response.data.username;
+                facUserIdNumber = response.data.id;
+
+                console.log('Username: ', facUserName);
+                console.log('User ID: ', facUserIdNumber)
+            } else {
+                $window.location.href = '/index.html';
+            }
+        });
+
+        return promise;
+    };
 
 
     //PUBLIC
@@ -28,11 +45,20 @@ myApp.factory('DataFactory', ['$http', function($http) {
         matchData: function() {
             return facMatchData;
         },
+        userIdNumber: function() {
+            return facUserIdNumber;
+        },
+        userName: function() {
+            return facUserName;
+        },
+        getUser: function() {
+            return facGetUser();
+        },
         getMatchData: function() {
             return facGetMatchData();
         },
-        postMatchData: function(favorite) {
-            return facPostMatchData(favorite);
+        postMatchData: function(match) {
+            return facPostMatchData(match);
         }
     };
 

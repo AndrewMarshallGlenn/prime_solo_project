@@ -2,53 +2,83 @@
 <html lang="en"  ng-app="myApp">
 <head>
   <title>Match Input</title>
+  <link rel="stylesheet" href="/assets/styles/style.css"/>
   <script type="text/javascript" src="/vendors/angular.min.js"></script>
   <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
   <script type="text/javascript" src="/assets/scripts/app.js"></script>
+  <script type="text/javascript" src="/assets/scripts/factories/data_factory.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/input_controller.js"></script>
-  <link rel="stylesheet" href="assets/styles/style.css"/>
 </head>
+
 <body ng-controller="InputController">
 <h1>Input Your Match Data</h1>
 
 <form name="matchForm">
   Your Character:
-  <select ng-model="character" ng-options="char for char in charList"></select><br>
+  <select ng-model="matchData.character" ng-options="char for char in charList"></select><br>
+
   Opposing Character:
-  <select ng-model="Ocharacter" ng-options="char for char in charList"></select><br>
+
+  <select ng-model="matchData.oCharacter" ng-options="char for char in charList"></select><br>
+
   Opposing Player's Relative Strength:
   <div>
-    <input type="radio" ng-model="relStr" value="less">Weaker
-    <input type="radio" ng-model="relStr" value="same">Even
-    <input type="radio" ng-model="relStr" value="more">Stronger
+    <input type="radio" ng-model="matchData.relStr" value="less">Weaker
+    <input type="radio" ng-model="matchData.relStr" value="same">Even
+    <input type="radio" ng-model="matchData.relStr" value="more">Stronger
   </div>
+
   Round Results:
   <div>
-  <input type="radio" ng-model="roundOne" value="win">Win
-  <input type="radio" ng-model="roundOne" value="loss">Loss
+  <input type="radio" ng-model="matchData.roundOne" value="win">Win
+  <input type="radio" ng-model="matchData.roundOne" value="loss">Loss
   </div>
   <div>
-  <input type="radio" ng-model="roundTwo" value="win">Win
-  <input type="radio" ng-model="roundTwo" value="loss">Loss
+  <input type="radio" ng-model="matchData.roundTwo" value="win">Win
+  <input type="radio" ng-model="matchData.roundTwo" value="loss">Loss
   </div>
   <div ng-show="roundThreeToggle()">
-  <input type="radio" ng-model="roundThree" value="win">Win
-  <input type="radio" ng-model="roundThree" value="loss">Loss
+  <input type="radio" ng-model="matchData.roundThree" value="win">Win
+  <input type="radio" ng-model="matchData.roundThree" value="loss">Loss
   </div>
 
+  AoI Tags:
+  <div>
+    <label>Anti-Airs:<input type="checkbox" ng-model="matchData.antiAirs"></label>
+    <label>Execution:<input type="checkbox" ng-model="matchData.execution"></label>
+    <label>Cross-Ups:<input type="checkbox" ng-model="matchData.crossUps"></label>
+    <label>Wake Up:<input type="checkbox" ng-model="matchData.wakeUp"></label>
+    <label>Okizeme:<input type="checkbox" ng-model="matchData.okizeme"></label>
+    <label>Teching:<input type="checkbox" ng-model="matchData.teching"></label><br>
+    <label>Spacing:<input type="checkbox" ng-model="matchData.spacing"></label>
+    <label>Footsies: <input type="checkbox" ng-model="matchData.footsies"></label>
+    <label>Hit Confirms:<input type="checkbox" ng-model="matchData.hitConfirms"></label>
+    <label>Hi-Low:<input type="checkbox" ng-model="matchData.hiLow"></label>
+    <label>Reads:<input type="checkbox" ng-model="matchData.reads"></label>
+    <label>Getting In:<input type="checkbox" ng-model="matchData.gettingIn"></label>
+
+  </div>
   Notes:<br>
-  <textarea ng-model="notes"></textarea>
+  <textarea ng-model="matchData.notes"></textarea>
+
+  <button ng-click="postMatch()">Submit</button>
 </form>
-{{character}}<br>
-{{oCharacter}}<br>
-{{roundOne}}<br>
-{{roundTwo}}<br>
-{{roundThree}}<br>
-{{relStr}}<br>
-<p ng-show="matchResult()">{{winLoss}}</p>
-{{notes}}
 
 
+{{matchData.character}}<br>
+{{matchData.oCharacter}}<br>
+{{matchData.roundOne}}<br>
+{{matchData.roundTwo}}<br>
+{{matchData.roundThree}}<br>
+{{matchData.relStr}}<br>
+<p ng-show="matchResult()">{{matchData.winLoss}}</p>
+{{matchData.notes}}
+{{matchData.antiAirs}}
+{{matchData.footsies}}
 <!--<main ng-view></main>-->
+<div>
+  <a href="user.html">Dashboard</a>
+  <a href="match_log.html">Match Log</a>
+</div>
 </body>
 </html>

@@ -6,11 +6,10 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
     var facGetMatchData = function() {
         console.log('getting data from server');
-        var promise = $http.get('/data').then(function(response) {
+        var promise = $http.get('/data/' + facUserIdNumber).then(function(response) {
             facMatchData = response.data;
             console.log('Async data response:', facMatchData);
         });
-
         return promise;
     };
 
@@ -30,7 +29,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
                 facUserIdNumber = response.data.id;
 
                 console.log('Username: ', facUserName);
-                console.log('User ID: ', facUserIdNumber)
+                console.log('User ID: ', facUserIdNumber);
             } else {
                 $window.location.href = '/index.html';
             }

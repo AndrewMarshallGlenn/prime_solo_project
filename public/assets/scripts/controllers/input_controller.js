@@ -1,71 +1,58 @@
-myApp.controller('InputController', ['$scope', function($scope) {
+myApp.controller('InputController', ['$scope', 'DataFactory', function($scope, DataFactory) {
   console.log('Im in input controller');
+  var dataFactory = DataFactory;
   $scope.charList = [
     'Birdie', 'Cammy', 'Chun-Li', 'Dhalsim', 'F.A.N.G.', 'Karin', 'Ken', 'Laura',
     'M. Bison', 'Nash', 'Necalli', 'Rashid', 'R. Mika', 'Ryu', 'Vega', 'Zangief'
   ];
 
-  var matchData = {};
 
-  $scope.roundOne = '';
-  $scope.roundTwo = '';
-  $scope.roundThree = null;
-  $scope.oCharacter = '';
-  $scope.character = '';
-  $scope.notes = '';
-  $scope.winLoss = '';
-  $scope.relStr = '';
-  $scope.antiAirs = null;
-  $scope.execution = null;
-  $scope.crossUps = null;
-  $scope.wakeUp = null;
-  $scope.okizeme = null;
-  $scope.teching = null;
-  $scope.spacing = null;
-  $scope.footsies = null;
-  $scope.hitConfirms = null;
-  $scope.hiLow = null;
-  $scope.reads = null;
-  $scope.gettingIn = null;
 
-  matchData = {
-    character: $scope.character,
-    oCharacter: $scope.oCharacter,
-    relStr: $scope.relStr,
-    roundOne: $scope.roundOne,
-    roundTwo: $scope.roundTwo,
-    roundThree: $scope.roundThree,
-    outcome: $scope.winLoss,
-    notes: $scope.notes,
-    antiAirs: $scope.antiAirs,
-    execution: $scope.execution,
-    crossUps: $scope.crossUps,
-    wakeUp: $scope.wakeUp,
-    okizeme: $scope.okizeme,
-    teching: $scope.teching,
-    spacing: $scope.spacing,
-    footsies: $scope.footsies,
-    hitConfirms: $scope.hitConfirms,
-    hiLow: $scope.hiLow,
-    reads: $scope.reads,
-    gettingIn: $scope.gettingIn,
-    userId:
-
+  $scope.matchData = {
+    roundOne: '',
+    roundTwo: '',
+    roundThree: null,
+    oCharacter: '',
+    character: '',
+    notes: '',
+    winLoss: '',
+    relStr: '',
+    antiAirs: null,
+    execution: null,
+    crossUps: null,
+    wakeUp: null,
+    okizeme: null,
+    teching: null,
+    spacing: null,
+    footsies: null,
+    hitConfirms: null,
+    hiLow: null,
+    reads: null,
+    gettingIn: null
   };
 
+  dataFactory.getUser().then(function(){
+    $scope.matchData.userId = dataFactory.userIdNumber();
+    console.log($scope.matchData.userId);
+  });
+
+
   $scope.roundThreeToggle = function(){
-    if(($scope.roundOne == 'win' && $scope.roundTwo == 'loss') || ($scope.roundOne == 'loss' && $scope.roundTwo == 'win')){
+    if(($scope.matchData.roundOne == 'win' && $scope.matchData.roundTwo == 'loss') || ($scope.matchData.roundOne == 'loss' && $scope.matchData.roundTwo == 'win')){
       return true;} else {return false;}
     };
 
   $scope.matchResult = function(){
-    if(($scope.roundOne == 'win' && $scope.roundTwo == 'win') ||
-       ($scope.roundOne == 'win' && $scope.roundThree == 'win') ||
-       ($scope.roundTwo == 'win' && $scope.roundThree == 'win')){
-        $scope.winLoss = 'true';
+    if(($scope.matchData.roundOne == 'win' && $scope.matchData.roundTwo == 'win') ||
+       ($scope.matchData.roundOne == 'win' && $scope.matchData.roundThree == 'win') ||
+       ($scope.matchData.roundTwo == 'win' && $scope.matchData.roundThree == 'win')){
+      $scope.matchData.winLoss = 'win';
         return true;
-    } else {$scope.winLoss = null;}
+    } else {$scope.matchData.winLoss = 'loss';}
   };
-
+  $scope.postMatch = function(){
+    console.log($scope.matchData.userId);
+    dataFactory.postMatchData($scope.matchData);
+  }
 
 }]);

@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Match Log!</title>
+
+  <link rel="stylesheet" href="/assets/styles/style.css">
+  <script type="text/javascript" src="/vendors/angular.min.js"></script>
+  <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/app.js"></script>
+  <script type="text/javascript" src="/assets/scripts/factories/data_factory.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/log_controller.js"></script>
+</head>
+
+<body ng-app="myApp">
+  <div ng-controller="LogController">
+    <div ng-repeat="match in matchList">
+      {{matchList[$index].character}}{{matchList[$index].outcome}}
+    </div>
+  </div>
+  <div>
+    <a href="match_input.html">Match Input Form</a>
+    <a href="user.html">Dashboard</a>
+  </div>
+</body>
+</html>

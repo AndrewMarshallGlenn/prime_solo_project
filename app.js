@@ -39,6 +39,7 @@ app.use('/data', data);
 // Serve back static files
 app.use(express.static('public'));
 app.use(express.static('public/views'));
+app.use(express.static('public/views/templates'));
 app.use(express.static('public/assets'));
 app.use(express.static('public/assets/scripts'));
 app.use(express.static('public/assets/styles'));

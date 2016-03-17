@@ -10,29 +10,36 @@
   <script type="text/javascript" src="/assets/scripts/app.js"></script>
   <script type="text/javascript" src="/assets/scripts/factories/data_factory.js"></script>
   <script type="text/javascript" src="/assets/scripts/controllers/dashboard_controller.js"></script>
+  <script type="text/javascript" src="/assets/scripts/controllers/view_controllers.js"></script>
+
 </head>
 
 <body ng-app="myApp">
-<div class="instructions" ng-controller="UserController">
+  <header>
+  <nav>
+    <a href="match_input.html">Match Input Form</a>
+    <a href="match_log.html">Match Log</a>
+  </nav>
+</header>
+
+  <div class="instructions" ng-controller="UserController">
   <div class="container">
     <h1 id="welcome" class="lead">Welcome, {{playerName}}!</h1>
   </div>
 </div>
-<div id="dashboard" ng-controller="DashboardController">
-  <div id="player-stats">
-   {{playerStats}}
-  </div>
-  <div id="char-stats">
-    <div ng-repeat="char in charList" class="char-stat-box">
-      {{charList[$index]}}
+  <div ng-view id="stat-window"></div>
+
+  <div id="dashboard" ng-controller="DashboardController">
+
+    <div id="player-stats">
+      {{playerStats}}
     </div>
-  </div>
 
-  <div>
-    <a href="match_input.html">Match Input Form</a>
-    <a href="match_log.html">Match Log</a>
+    <div ng-repeat="char in charImages" class="char-stat-box">
+      <div><a href="{{char.link}}"><img ng-src="{{char.path}}"/></a></div>
+    </div>
 
+    <h2>bananas</h2>
   </div>
-</div>
 </body>
 </html>

@@ -13,14 +13,46 @@
 </head>
 
 <body ng-app="myApp">
-  <div ng-controller="LogController">
-    <div ng-repeat="match in matchList">
-      {{matchList[$index].character}}{{matchList[$index].outcome}}
+  <header>
+    <nav>
+      <a href="match_input.html">Match Input Form</a>
+      <a href="user.html">Dashboard</a>
+    </nav>
+  </header>
+  <section id="match-log">
+    <div ng-controller="LogController">
+      <div ng-repeat="match in matchList" class="LogEntry">
+        <div>
+        <div class="char-thumb"><img class="thumb-img" ng-src="{{matchList[$index].char_img_path}}"/></div>
+        <div class="char-name">{{matchList[$index].character}}</div>
+        </div>
+        <!--<div class="outcome">{{matchList[$index].outcome}}</div>-->
+        <!--<div class="rd-txt">rd1</div>-->
+        <!--<div class="rd-txt">rd2</div>-->
+        <!--<div class="rd-txt">rd3</div>-->
+        <!--<div class="rd-outcome">{{matchList[$index].rd_one}}</div>-->
+        <!--<div class="rd-outcome">{{matchList[$index].rd_two}}</div>-->
+        <!--<div class="rd-outcome">{{matchList[$index].rd_three}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].anti_airs}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].execution}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].cross_ups}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].wake_up}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].okizeme}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].teching}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].spacing}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].footsies}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].hit_confirms}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].hi_low}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].reads}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].getting_in}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].notes}}</div>-->
+        <!--<div class="aOi-tag">{{matchList[$index].o_rel_str}}</div>-->
+        <!--<div>-->
+        <!--<div class="o-char-name">{{matchList[$index].o_character}}</div>-->
+        <!--<div class="o-char-thumb"><img class="thumb-img" ng-src="{{matchList[$index].o_char_img_path}}" /></div>-->
+        <!--</div>-->
+      </div>
     </div>
-  </div>
-  <div>
-    <a href="match_input.html">Match Input Form</a>
-    <a href="user.html">Dashboard</a>
-  </div>
+  </section>
 </body>
 </html>

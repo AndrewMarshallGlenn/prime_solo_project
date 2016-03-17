@@ -39,25 +39,79 @@
 .btn-danger{
     margin-left: 10px;
 }
-#player-stats{
-    float: left;
-    border: darkred;
-    border-width: 1px;
-    border-style: solid;
-    height: 396px;
-    width: 96px;
-    margin: 1px;
+body{
+    width: 90%;
+    margin: 0 auto;
 }
-#char-stats{
-    height: 400px;
-    width: 550px;
+#dashboard{
+    width: 100%;
+    margin: 10px auto 10px auto;
+    border: 2px solid black;
+    overflow: auto;
+}
+#player-stats{
+    border-right-color: black;
+    border-right-width: 2px;
+    border-right-style: solid;
+    height: 100%;
+    min-height: 600px;
+    width: 33%;
+    min-width: 200px;
+    float: left;
 }
 .char-stat-box{
     float: left;
-    border: darkred;
-    border-width: 1px;
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+    margin: 3px;
+}
+.LogEntry{
+    border: 3px solid black;
+    height: 105px;
+    width: 80%;
+    margin: 10px auto 10px auto;
+}
+.char-thumb{
+    height: 86px;
+    width: 75px;
+    border-width: 0 1px 0 0;
+    border-color: black;
     border-style: solid;
-    height: 96px;
-    width: 96px;
-    margin: 1px;
+}
+.o-char-thumb{
+    height: 86px;
+    width: 75px;
+    border-color: black;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    float: right;
+    clear: right;
+}
+.thumb-img{
+    height: 86px;
+    width: 75px;
+}
+.char-name{
+    height: 18px;
+    width: 75px;
+    text-align: center;
+    clear: left;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    border-color: black;
+}
+.o-char-name{
+    height: 18px;
+    width: 75px;
+    border-style: solid;
+    border-width: 0 0 1px 1px;
+    border-color: black;
+    text-align: center;
+    float: right;
+}
+#stat-window{
+    border: 1px solid black;
+    height: 400px;
+    width: 50%;
 }

@@ -4,6 +4,7 @@ myApp.controller('LogController', ['$scope', 'DataFactory', function($scope, Dat
   var dataFactory = DataFactory;
   var userId = '';
   $scope.matchList = [];
+  $scope.characters = dataFactory.charList();
 
   dataFactory.getUser().then(function(){
     userId = dataFactory.userIdNumber();
@@ -11,6 +12,7 @@ myApp.controller('LogController', ['$scope', 'DataFactory', function($scope, Dat
     dataFactory.getMatchData().then(function(){
       $scope.matchList = dataFactory.matchData();
       console.log('$scope.matchList: ' + $scope.matchList);
+      console.log($scope.matchList[0]);
     });
   });
 

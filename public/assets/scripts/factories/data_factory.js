@@ -24,28 +24,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
         {charId: '15', label: 'Vega'},
         {charId: '16', label: 'Zangief'}
     ];
-    var facCharLinkList = [
-        'birdie', 'cammy', 'chun', 'dhalsim', 'fang', 'karin', 'ken', 'laura',
-        'bison', 'nash', 'necalli', 'rashid', 'rmika', 'ryu', 'vega', 'zangief'
-    ];
-    var facImgThumbnails = {
-      birdie:  "/assets/images/birdie.png",
-      cammy:  "/assets/images/cammy.png",
-      chunli:  "/assets/images/chunli.png",
-      dhalsim:  "/assets/images/dhalsim.png",
-      fang:  "/assets/images/fang.png",
-      karin:  "/assets/images/karin.png",
-      ken:  "/assets/images/ken.png",
-      laura:  "/assets/images/laura.png",
-      mbison:  "/assets/images/mbison.png",
-      nash:  "/assets/images/nash.png",
-      necalli:  "/assets/images/necalli.png",
-      rashid:  "/assets/images/rashid.png",
-      rmika:  "/assets/images/r-mika.png",
-      ryu:  "/assets/images/ryu.png",
-      vega:  "/assets/images/vega.png",
-      zangief:  "/assets/images/zangief.png"
-    };
+
 
     var facPushToFacAoiTags = function(newItem){
         facAoiTags.push(newItem);
@@ -61,17 +40,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
         console.log('aoitagsarray in factory: '+facAoiTags);
     };
 
-    var facGetPlayerStats = function() {
-        console.log('getting data from server');
-        var promise = $http.get('/data/stats/' + facUserIdNumber).then(function(response) {
-            facStatData = response.data;
-            console.log('Async data response:', facMatchData);
-        });
-        return promise;
-    };
-
-    var facGetMostCommonTag = function(){
-        var promise = $http.get('/data/chartag/' + facUserIdNumber).then(function(response) {
+    var facGetMostCommonTag = function(character){
+        var promise = $http.get('/data/chartag/' + character + '/' + facUserIdNumber).then(function(response) {
             var tagList = response.data;
             facTopTag = tagList[0].tags;
             console.log('Async data response:', tagList);
@@ -130,14 +100,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
         aoiTagsArray: function() {
             return facAoiTags;
         },
-        charLinkList: function() {
-            return facCharLinkList;
-        },
         charList: function() {
             return facCharList;
-        },
-        ImgThumbnails: function() {
-            return facImgThumbnails;
         },
         userName: function() {
             return facUserName;
@@ -148,8 +112,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
         getMatchData: function() {
             return facGetMatchData();
         },
-        getMostCommonTag: function() {
-            return facGetMostCommonTag();
+        getMostCommonTag: function(character) {
+            return facGetMostCommonTag(character);
         },
         pushToFacAoiTags: function(newItem) {
             return facPushToFacAoiTags(newItem);

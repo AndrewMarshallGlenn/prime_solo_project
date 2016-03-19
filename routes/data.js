@@ -38,9 +38,10 @@ router.get('/:id', function(req, res) {
   });
 });
 
-router.get('/chartag/:id', function(req, res) {
+router.get('/chartag/:character/:id', function(req, res) {
   var results = [];
 
+  console.log('get character:', req.params.character);
   console.log('get id:', req.params.id);
 
   pg.connect(connect, function(err, client, done) {
@@ -48,9 +49,10 @@ router.get('/chartag/:id', function(req, res) {
     'FROM tags_match '+
     'JOIN match_data ON tags_match.match_id = match_data.id '+
     'JOIN improvement_tags ON tags_match.tags_id = improvement_tags.id '+
-    'WHERE match_data.character_id = 9 '+
+    'JOIN users ON match_data.user_id = users.id '+
+    'WHERE match_data.character_id = $1 AND users.id = $2 '+
     'GROUP BY tags_match.tags_id, improvement_tags.tags '+
-    'ORDER BY count DESC');
+    'ORDER BY count DESC', [req.params.character ,req.params.id]);
 
 
     // Stream results back one row at a time

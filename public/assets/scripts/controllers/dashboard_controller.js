@@ -7,9 +7,8 @@ myApp.controller('DashboardController', ['$scope', 'DataFactory', function($scop
   var dataFactory = DataFactory;
   $scope.playerStats = 'player Stats';
   $scope.charactersTopTag = '';
-  $scope.charLinks = dataFactory.charLinkList();
 
-  $scope.charImages = [
+  $scope.characters = [
     {path:  "/assets/images/birdie.png",
      link: '#birdie'},
     {path:  "/assets/images/cammy.png",
@@ -44,10 +43,7 @@ myApp.controller('DashboardController', ['$scope', 'DataFactory', function($scop
      link: '#zangief'}
   ];
 
-     $scope.test = 'bananas';
 
-    dataFactory.getMostCommonTag().then(function(){
-      $scope.charactersTopTag = dataFactory.topTag();
-    });
+
 
 }]);

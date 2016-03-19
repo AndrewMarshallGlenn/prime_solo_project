@@ -68,7 +68,7 @@ var myApp = angular.module('myApp', ['ngRoute']);
         controller: 'VegaController'
       })
       .when('/zangief', {
-        templateUrl: 'views/templates/zangief_view.html',
+        templateUrl: '/views/templates/zangief_view.html',
         controller: 'ZangiefController'
       })
       .otherwise({

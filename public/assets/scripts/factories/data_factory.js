@@ -4,6 +4,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     var facUserIdNumber = undefined;
     var facUserName = undefined;
     var facStatData = undefined;
+    var facTopTag = undefined;
     var facAoiTags = [];
     var facCharList = [
         {charId: '1', label: 'Birdie'},
@@ -69,6 +70,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
         return promise;
     };
 
+    var facGetMostCommonTag = function(){
+        var promise = $http.get('/data/chartag/' + facUserIdNumber).then(function(response) {
+            var tagList = response.data;
+            facTopTag = tagList[0].tags;
+            console.log('Async data response:', tagList);
+        });
+        return promise;
+    };
+
     var facGetMatchData = function() {
         console.log('getting data from server for id: ', facUserIdNumber);
         var promise = $http.get('/data/' + facUserIdNumber).then(function(response) {
@@ -114,6 +124,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
         userIdNumber: function() {
             return facUserIdNumber;
         },
+        topTag: function() {
+            return facTopTag;
+        },
         aoiTagsArray: function() {
             return facAoiTags;
         },
@@ -134,6 +147,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
         },
         getMatchData: function() {
             return facGetMatchData();
+        },
+        getMostCommonTag: function() {
+            return facGetMostCommonTag();
         },
         pushToFacAoiTags: function(newItem) {
             return facPushToFacAoiTags(newItem);

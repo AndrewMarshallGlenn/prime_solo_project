@@ -38,6 +38,38 @@ router.get('/:id', function(req, res) {
   });
 });
 
+router.get('/chartag/:id', function(req, res) {
+  var results = [];
+
+  console.log('get id:', req.params.id);
+
+  pg.connect(connect, function(err, client, done) {
+    var query = client.query('SELECT COUNT(tags_match.match_id) AS count, tags_match.tags_id, improvement_tags.tags '+
+    'FROM tags_match '+
+    'JOIN match_data ON tags_match.match_id = match_data.id '+
+    'JOIN improvement_tags ON tags_match.tags_id = improvement_tags.id '+
+    'WHERE match_data.character_id = 9 '+
+    'GROUP BY tags_match.tags_id, improvement_tags.tags '+
+    'ORDER BY count DESC');
+
+
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    // close connection
+    query.on('end', function() {
+      done();
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log('select error: ', err);
+    }
+  });
+});
+
 router.get('/stats/:id', function(req, res) {
   var results = [];
 

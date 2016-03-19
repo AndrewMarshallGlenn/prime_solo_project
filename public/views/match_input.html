@@ -43,21 +43,48 @@
   </div>
 
   AoI Tags:
-  <div>
-    <label>Anti-Airs:<input type="checkbox" ng-model="matchData.antiAirs"></label>
-    <label>Execution:<input type="checkbox" ng-model="matchData.execution"></label>
-    <label>Cross-Ups:<input type="checkbox" ng-model="matchData.crossUps"></label>
-    <label>Wake Up:<input type="checkbox" ng-model="matchData.wakeUp"></label>
-    <label>Okizeme:<input type="checkbox" ng-model="matchData.okizeme"></label>
-    <label>Teching:<input type="checkbox" ng-model="matchData.teching"></label><br>
-    <label>Spacing:<input type="checkbox" ng-model="matchData.spacing"></label>
-    <label>Footsies: <input type="checkbox" ng-model="matchData.footsies"></label>
-    <label>Hit Confirms:<input type="checkbox" ng-model="matchData.hitConfirms"></label>
-    <label>Hi-Low:<input type="checkbox" ng-model="matchData.hiLow"></label>
-    <label>Reads:<input type="checkbox" ng-model="matchData.reads"></label>
-    <label>Getting In:<input type="checkbox" ng-model="matchData.gettingIn"></label>
+  <img ng-src="/assets/images/antiairs.png" ng-if="matchData.antiAirs == null" ng-click="antiAirTrue()"/>
+  <img ng-src="/assets/images/antiairs_sel.png" ng-if="matchData.antiAirs == '1'" ng-click="antiAirFalse()"/>
+  <img ng-src="/assets/images/execution.png" ng-if="matchData.execution == null" ng-click="executionTrue()"/>
+  <img ng-src="/assets/images/execution_sel.png" ng-if="matchData.execution == '2'" ng-click="executionFalse()"/>
+  <img ng-src="/assets/images/crossups.png" ng-if="matchData.crossUps == null" ng-click="crossUpsTrue()"/>
+  <img ng-src="/assets/images/crossups_sel.png" ng-if="matchData.crossUps == '3'" ng-click="crossUpsFalse()"/>
+  <img ng-src="/assets/images/wakeup.png" ng-if="matchData.wakeUp == null" ng-click="wakeUpTrue()"/>
+  <img ng-src="/assets/images/wakeup_sel.png" ng-if="matchData.wakeUp == '4'" ng-click="wakeUpFalse()"/>
+  <img ng-src="/assets/images/oki.png" ng-if="matchData.okizeme == null" ng-click="okizemeTrue()"/>
+  <img ng-src="/assets/images/oki_sel.png" ng-if="matchData.okizeme == '5'" ng-click="okizemeFalse()"/>
+  <img ng-src="/assets/images/teching.png" ng-if="matchData.teching == null" ng-click="techingTrue()"/>
+  <img ng-src="/assets/images/teching_sel.png" ng-if="matchData.teching == '6'" ng-click="techingFalse()"/>
+  <img ng-src="/assets/images/spacing.png" ng-if="matchData.spacing == null" ng-click="spacingTrue()"/>
+  <img ng-src="/assets/images/spacing_sel.png" ng-if="matchData.spacing == '7'" ng-click="spacingFalse()"/>
+  <img ng-src="/assets/images/footsies.png" ng-if="matchData.footsies == null" ng-click="footsiesTrue()"/>
+  <img ng-src="/assets/images/footsies_sel.png" ng-if="matchData.footsies == '8'" ng-click="footsiesFalse()"/>
+  <img ng-src="/assets/images/hitconfirms.png" ng-if="matchData.hitConfirms == null" ng-click="hitConfirmsTrue()"/>
+  <img ng-src="/assets/images/hitconfirms_sel.png" ng-if="matchData.hitConfirms == '9'" ng-click="hitConfirmsFalse()"/>
+  <img ng-src="/assets/images/hilow.png" ng-if="matchData.hiLow == null" ng-click="hiLowTrue()"/>
+  <img ng-src="/assets/images/hilow_sel.png" ng-if="matchData.hiLow == '10'" ng-click="hiLowFalse()"/>
+  <img ng-src="/assets/images/reads.png" ng-if="matchData.reads == null" ng-click="readsTrue()"/>
+  <img ng-src="/assets/images/reads_sel.png" ng-if="matchData.reads == '11'" ng-click="readsFalse()"/>
+  <img ng-src="/assets/images/gettingin.png" ng-if="matchData.gettingIn == null" ng-click="gettingInTrue()"/>
+  <img ng-src="/assets/images/gettingin_sel.png" ng-if="matchData.gettingIn == '12'" ng-click="gettingInFalse()"/>
 
-  </div>
+
+
+
+  <!--<div>-->
+    <!--<label>Anti-Airs:<input type="checkbox" ng-model="matchData.antiAirs"></label>-->
+    <!--<label>Execution:<input type="checkbox" ng-model="matchData.execution"></label>-->
+    <!--<label>Cross-Ups:<input type="checkbox" ng-model="matchData.crossUps"></label>-->
+    <!--<label>Wake Up:<input type="checkbox" ng-model="matchData.wakeUp"></label>-->
+    <!--<label>Okizeme:<input type="checkbox" ng-model="matchData.okizeme"></label>-->
+    <!--<label>Teching:<input type="checkbox" ng-model="matchData.teching"></label><br>-->
+    <!--<label>Spacing:<input type="checkbox" ng-model="matchData.spacing"></label>-->
+    <!--<label>Footsies: <input type="checkbox" ng-model="matchData.footsies"></label>-->
+    <!--<label>Hit Confirms:<input type="checkbox" ng-model="matchData.hitConfirms"></label>-->
+    <!--<label>Hi-Low:<input type="checkbox" ng-model="matchData.hiLow"></label>-->
+    <!--<label>Reads:<input type="checkbox" ng-model="matchData.reads"></label>-->
+    <!--<label>Getting In:<input type="checkbox" ng-model="matchData.gettingIn"></label>-->
+  <!--</div>-->
   Notes:<br>
   <textarea ng-model="matchData.notes"></textarea>
 
@@ -65,12 +92,18 @@
 </form>
 
 
-{{matchData.character.charId}}<br>
-{{matchData.oCharacter.charId}}<br>
-{{matchData.roundOne}}<br>
-{{matchData.roundTwo}}<br>
-{{matchData.roundThree}}<br>
-{{matchData.relStr}}<br>
+{{matchData.antiAirs}}<br>
+{{matchData.execution}}<br>
+{{matchData.crossUps}}<br>
+{{matchData.wakeUp}}<br>
+{{matchData.okizeme}}<br>
+{{matchData.teching}}<br>
+{{matchData.spacing}}<br>
+{{matchData.footsies}}<br>
+{{matchData.hitConfirms}}<br>
+{{matchData.hiLow}}<br>
+{{matchData.reads}}<br>
+{{matchData.gettingIn}}<br>
 <p ng-show="matchResult()">{{matchData.winLoss}}</p>
 {{matchData.notes}}
 {{matchData.antiAirs}}

@@ -73,6 +73,7 @@ router.post('/', function(req, res) {
     roundThree: req.body.roundThree,
     outcome: req.body.winLoss,
     notes: req.body.notes,
+    aoiTags: req.body.aoiTags,
     antiAirs: req.body.antiAirs,
     execution: req.body.execution,
     crossUps: req.body.crossUps,

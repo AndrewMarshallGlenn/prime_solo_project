@@ -1,5 +1,6 @@
 myApp.controller('InputController', ['$scope', 'DataFactory', function($scope, DataFactory) {
   console.log('Im in input controller');
+
   var dataFactory = DataFactory;
 
   $scope.characters = dataFactory.charList();
@@ -13,21 +14,21 @@ myApp.controller('InputController', ['$scope', 'DataFactory', function($scope, D
     notes: '',
     winLoss: '',
     relStr: '',
-    aoiTags: [],
-    antiAirs: null,
-    execution: null,
-    crossUps: null,
-    wakeUp: null,
-    okizeme: null,
-    teching: null,
-    spacing: null,
-    footsies: null,
-    hitConfirms: null,
-    hiLow: null,
-    reads: null,
-    gettingIn: null
+    aoiTags: []
   };
 
+  $scope.antiAirs = null;
+  $scope.execution = null;
+  $scope.crossUps = null;
+  $scope.wakeUp = null;
+  $scope.okizeme = null;
+  $scope.teching = null;
+  $scope.spacing = null;
+  $scope.footsies = null;
+  $scope.hitConfirms = null;
+  $scope.hiLow = null;
+  $scope.reads = null;
+  $scope.gettingIn = null;
 
   dataFactory.getUser().then(function(){
     $scope.matchData.userId = dataFactory.userIdNumber();
@@ -35,76 +36,100 @@ myApp.controller('InputController', ['$scope', 'DataFactory', function($scope, D
   });
 
   $scope.antiAirTrue = function(){
-    $scope.matchData.antiAirs = '1';
+    $scope.antiAirs = '1';
+    dataFactory.pushToFacAoiTags('1');
   };
   $scope.antiAirFalse = function(){
-    $scope.matchData.antiAirs = null;
+    $scope.antiAirs = null;
+    dataFactory.removeFromFacAoiTags('1');
   };
   $scope.executionTrue = function(){
-    $scope.matchData.execution = '2';
+    $scope.execution = '2';
+    dataFactory.pushToFacAoiTags('2');
   };
   $scope.executionFalse = function(){
-    $scope.matchData.execution = null;
+    $scope.execution = null;
+    dataFactory.removeFromFacAoiTags('2');
   };
   $scope.crossUpsTrue = function(){
-    $scope.matchData.crossUps = '3';
+    $scope.crossUps = '3';
+    dataFactory.pushToFacAoiTags('3');
   };
   $scope.crossUpsFalse = function(){
-    $scope.matchData.crossUps = null;
+    $scope.crossUps = null;
+    dataFactory.removeFromFacAoiTags('3');
   };
   $scope.wakeUpTrue = function(){
-    $scope.matchData.wakeUp = '4';
+    $scope.wakeUp = '4';
+    dataFactory.pushToFacAoiTags('4');
   };
   $scope.wakeUpFalse = function(){
-    $scope.matchData.wakeUp = null;
+    $scope.wakeUp = null;
+    dataFactory.removeFromFacAoiTags('4');
   };
   $scope.okizemeTrue = function(){
-    $scope.matchData.okizeme = '5';
+    $scope.okizeme = '5';
+    dataFactory.pushToFacAoiTags('5');
   };
   $scope.okizemeFalse = function(){
-    $scope.matchData.okizeme = null;
+    $scope.okizeme = null;
+    dataFactory.removeFromFacAoiTags('5');
   };
   $scope.techingTrue = function(){
-    $scope.matchData.teching = '6';
+    $scope.teching = '6';
+    dataFactory.pushToFacAoiTags('6');
   };
   $scope.techingFalse = function(){
-    $scope.matchData.teching = null;
+    $scope.teching = null;
+    dataFactory.removeFromFacAoiTags('6');
   };
   $scope.spacingTrue = function(){
-    $scope.matchData.spacing = '7';
+    $scope.spacing = '7';
+    dataFactory.pushToFacAoiTags('7');
   };
   $scope.spacingFalse = function(){
-    $scope.matchData.spacing = null;
+    $scope.spacing = null;
+    dataFactory.removeFromFacAoiTags('7');
   };
   $scope.footsiesTrue = function(){
-    $scope.matchData.footsies = '8';
+    $scope.footsies = '8';
+    dataFactory.pushToFacAoiTags('8');
   };
   $scope.footsiesFalse = function(){
-    $scope.matchData.footsies = null;
+    $scope.footsies = null;
+    dataFactory.removeFromFacAoiTags('8');
   };
   $scope.hitConfirmsTrue = function(){
-    $scope.matchData.hitConfirms = '9';
+    $scope.hitConfirms = '9';
+    dataFactory.pushToFacAoiTags('9');
   };
   $scope.hitConfirmsFalse = function(){
-    $scope.matchData.hitConfirms = null;
+    $scope.hitConfirms = null;
+    dataFactory.removeFromFacAoiTags('9');
   };
   $scope.hiLowTrue = function(){
-    $scope.matchData.hiLow = '10';
+    $scope.hiLow = '10';
+    dataFactory.pushToFacAoiTags('10');
   };
   $scope.hiLowFalse = function(){
-    $scope.matchData.hiLow = null;
+    $scope.hiLow = null;
+    dataFactory.removeFromFacAoiTags('10');
   };
   $scope.readsTrue = function(){
-    $scope.matchData.reads = '11';
+    $scope.reads = '11';
+    dataFactory.pushToFacAoiTags('11');
   };
   $scope.readsFalse = function(){
-    $scope.matchData.reads = null;
+    $scope.reads = null;
+    dataFactory.removeFromFacAoiTags('11');
   };
   $scope.gettingInTrue = function(){
-    $scope.matchData.gettingIn = '12';
+    $scope.gettingIn = '12';
+    dataFactory.pushToFacAoiTags('12');
   };
   $scope.gettingInFalse = function(){
-    $scope.matchData.gettingIn = null;
+    $scope.gettingIn = null;
+    dataFactory.removeFromFacAoiTags('12');
   };
 
   $scope.roundThreeToggle = function(){
@@ -122,6 +147,7 @@ myApp.controller('InputController', ['$scope', 'DataFactory', function($scope, D
   };
   $scope.postMatch = function(){
     console.log('post match id: ', $scope.matchData.userId);
+    $scope.matchData.aoiTags = dataFactory.aoiTagsArray();
     dataFactory.postMatchData($scope.matchData);
   };
 

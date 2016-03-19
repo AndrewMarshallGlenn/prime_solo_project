@@ -3,13 +3,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
     var facMatchData = undefined;
     var facUserIdNumber = undefined;
     var facUserName = undefined;
-    var facWinPercent = undefined;
-    var facWinPercentTen = undefined;
-    var facWinPercent25 = undefined;
-    var facMostCommonTag = undefined;
-    var facBestMatchUp = undefined;
-    var facWorstMatchUp = undefined;
     var facStatData = undefined;
+    var facAoiTags = [];
     var facCharList = [
         {charId: '1', label: 'Birdie'},
         {charId: '2', label: 'Cammy'},
@@ -51,6 +46,20 @@ myApp.factory('DataFactory', ['$http', function($http) {
       zangief:  "/assets/images/zangief.png"
     };
 
+    var facPushToFacAoiTags = function(newItem){
+        facAoiTags.push(newItem);
+        console.log('aoitagsarray in factory: '+facAoiTags);
+    };
+
+    var facRemoveFromFacAoiTags = function(oldItem){
+        for(var i = facAoiTags.length - 1; i >= 0; i--) {
+            if(facAoiTags[i] === oldItem) {
+                facAoiTags.splice(i, 1);
+            }
+        }
+        console.log('aoitagsarray in factory: '+facAoiTags);
+    };
+
     var facGetPlayerStats = function() {
         console.log('getting data from server');
         var promise = $http.get('/data/stats/' + facUserIdNumber).then(function(response) {
@@ -74,6 +83,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
         var promise = $http.post('/data', match).then(function(response) {
             console.log('match data saved');
             console.log(response);
+            facAoiTags = [];
             return facGetMatchData();
         });
 
@@ -104,6 +114,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
         userIdNumber: function() {
             return facUserIdNumber;
         },
+        aoiTagsArray: function() {
+            return facAoiTags;
+        },
         charLinkList: function() {
             return facCharLinkList;
         },
@@ -121,6 +134,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
         },
         getMatchData: function() {
             return facGetMatchData();
+        },
+        pushToFacAoiTags: function(newItem) {
+            return facPushToFacAoiTags(newItem);
+        },
+        removeFromFacAoiTags: function(oldItem) {
+            return facRemoveFromFacAoiTags(oldItem);
         },
         postMatchData: function(match) {
             return facPostMatchData(match);

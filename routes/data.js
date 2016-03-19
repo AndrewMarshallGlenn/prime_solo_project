@@ -73,28 +73,16 @@ router.post('/', function(req, res) {
     roundThree: req.body.roundThree,
     outcome: req.body.winLoss,
     notes: req.body.notes,
-    aoiTags: req.body.aoiTags,
-    antiAirs: req.body.antiAirs,
-    execution: req.body.execution,
-    crossUps: req.body.crossUps,
-    wakeUp: req.body.wakeUp,
-    okizeme: req.body.okizeme,
-    teching: req.body.teching,
-    spacing: req.body.spacing,
-    footsies: req.body.footsies,
-    hitConfirms: req.body.hitConfirms,
-    hiLow: req.body.hiLow,
-    reads: req.body.reads,
-    gettingIn: req.body.gettingIn
+    aoiTags: req.body.aoiTags
   };
   console.log(addMatch.character);
   console.log(req.body.character.charId);
   pg.connect(connect, function(err, client, done) {
     console.log('this is the query');
-    client.query(
-      'INSERT INTO match_data ' +
+    var queryVar = 'INSERT INTO match_data ' +
       '(user_id, time, character_id, o_character_id, o_rel_str, rd_one, rd_two, rd_three, outcome, notes) ' +
-      'VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id',
+      'VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id';
+    client.query(queryVar,
       [addMatch.id,'now()', addMatch.character, addMatch.oCharacter, addMatch.relStr, addMatch.roundOne, addMatch.roundTwo, addMatch.roundThree,
         addMatch.outcome, addMatch.notes],
       function(err, result) {
@@ -105,14 +93,13 @@ router.post('/', function(req, res) {
         } else {
           addMatch.matchId = result.rows[0].id;
           console.log('result: ' + result);
-          client.query(
-          'INSERT INTO tags_match ' +
-          '(tags_id, match_id) ' +
-          'VALUES ($1, $2), ($3, $4), ($5, $6), ($7, $8), ($9, $10), ($11, $12), ' +
-          '($13, $14), ($15, $16), ($17, $18), ($19, $20), ($21, $22), ($23, $24)',
-          [addMatch.antiAirs, addMatch.matchId, addMatch.execution, addMatch.matchId, addMatch.crossUps, addMatch.matchId, addMatch.wakeUp, addMatch.matchId,
-            addMatch.okizeme, addMatch.matchId, addMatch.teching, addMatch.matchId, addMatch.spacing, addMatch.matchId, addMatch.footsies, addMatch.matchId,
-            addMatch.hitConfirms, addMatch.matchId, addMatch.hiLow, addMatch.matchId, addMatch.reads, addMatch.matchId, addMatch.gettingIn, addMatch.matchId],
+          var queryVarTwo = 'INSERT INTO tags_match (tags_id, match_iD) VALUES ';
+          for(var i = 0; i < addMatch.aoiTags.length; i++){
+            queryVarTwo += '(' + addMatch.aoiTags[i] + ',' + addMatch.matchId + '), ';
+          }
+          queryVarTwo = queryVarTwo.slice(0, -2);
+          console.log(queryVarTwo);
+          client.query(queryVarTwo,
           function(err, result) {
             done();
             if(err) {

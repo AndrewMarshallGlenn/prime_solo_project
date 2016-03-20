@@ -32,10 +32,11 @@
   <div id="dashboard">
 
     <div id="player-stats" ng-controller="DashboardController">
-      <h2>{{pWinPercent}}</h2>
-      <h2>{{pWinPercent10}}</h2>
-      <h2>{{pWinPercent25}}</h2>
-      <h2>{{topUsed}}</h2>
+      <p class="p-stats">You're Total Win %:   <span>{{pWinPercent}}</span></p>
+      <p class="p-stats">Last 10 Matches Win %:   <span>{{pWinPercent10}}</span></p>
+      <p class="p-stats">Last 25 Matches Win %:   <span>{{pWinPercent25}}</span></p><br>
+      <p class="p-stats">3 Most Used Characters:   </p>
+      <div><h2>{{topUsed}}</h2></div>
       <img ng-src="{{topUsedImg}}"/>
       <h2>{{topUsed2}}</h2>
       <img ng-src="{{topUsed2Img}}"/>
@@ -45,7 +46,7 @@
     <div id="char-boxes">
       <div ng-controller="DashboardController">
         <div ng-repeat="char in characters" class="char-stat-box">
-          <div><a href="{{char.link}}"><img ng-src="{{char.path}}"/></a></div>
+          <div><a href="{{char.link}}"><img class="view-links" ng-src="{{char.path}}"/></a></div>
         </div>
       </div>
     </div>

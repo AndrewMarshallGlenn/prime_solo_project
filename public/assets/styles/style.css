@@ -44,25 +44,40 @@ body{
     margin: 0 auto;
 }
 #dashboard{
-    width: 1272px;
+    width: 1292px;
     height: 600px;
-    margin: 10px auto 10px auto;
-    border: 2px solid black;
+    border: 3px solid black;
     overflow: auto;
 }
 #player-stats{
     border-right-color: black;
-    border-right-width: 2px;
+    border-right-width: 3px;
     border-right-style: solid;
     height: 600px;
-    width: 400px;
+    width: 393px;
     float: left;
-    margin-right: 3px;
+    padding-left: 10px;
 }
-.char-boxes{
-    height: 300px;
-    border-bottom: 1px solid black;
-
+.p-stats{
+    margin-bottom: 3px;
+    margin-top: 3px;
+    font-size: large;
+}
+#char-boxes{
+    height: 230px;
+    margin-left: 402px;
+    overflow: hidden;
+}
+.char-stat-box{
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+    float: left;
+    margin-left: 8px;
+    margin-top: 8px;
+}
+.view-links{
+    margin-left: 12px;
 }
 .LogEntry{
     border: 3px solid black;
@@ -85,9 +100,9 @@ body{
 }
 #stat-window{
     border: 1px solid black;
-    height: 373px;
-    width: 858px;
-    margin-left: 407px;
+    height: 359px;
+    width: 868px;
+    margin-left: 415px;
 }
 h2{
     font-size: medium;

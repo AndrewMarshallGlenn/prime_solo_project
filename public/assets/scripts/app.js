@@ -3,10 +3,6 @@ var myApp = angular.module('myApp', ['ngRoute']);
   myApp.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider
-      //.when('/player', {
-      //  templateUrl: '/assets/views/templates/player_view.html',
-      //  controller: 'DashboardController'
-      //})
       .when('/birdie', {
         templateUrl: '/views/templates/birdie_view.html',
         controller: 'BirdieController'

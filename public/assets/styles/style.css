@@ -48,6 +48,8 @@ body{
     height: 600px;
     border: 3px solid black;
     overflow: auto;
+    opacity: .95;
+    background-color: lightsteelblue;
 }
 #player-stats{
     border-right-color: black;
@@ -57,11 +59,12 @@ body{
     width: 393px;
     float: left;
     padding-left: 10px;
+    opacity: 1;
 }
 .p-stats{
     margin-bottom: 3px;
     margin-top: 3px;
-    font-size: large;
+    font-size: x-large;
 }
 #char-boxes{
     height: 230px;
@@ -85,6 +88,8 @@ body{
     width: 1000px;
     margin: 10px auto 10px auto;
     overflow: hidden;
+    opacity: .90;
+    background-color: lightgoldenrodyellow;
 }
 .thumb-img{
     height: 86px;
@@ -103,6 +108,7 @@ body{
     height: 359px;
     width: 868px;
     margin-left: 415px;
+    background-color: #BB5775;
 }
 h2{
     font-size: medium;
@@ -207,4 +213,13 @@ h2{
 .orl-head{
     border-bottom: 1px solid black;
     text-align: center;
+}
+#user-page{
+    background-image: url("/assets/images/street_fighter_5-wide.jpg");
+}
+.views{
+    opacity: 1;
+}
+#log-page{
+    background-image: url("/assets/images/fang_wallpaper.png");
 }

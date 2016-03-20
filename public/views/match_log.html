@@ -13,7 +13,7 @@
 </head>
 
 <body id="log-page" ng-app="myApp">
-  <header>
+  <header class="non-dash">
     <h1 class="title">You're Previous Matches</h1>
     <nav class="navbar">
       <a href="match_input.html">Match Input Form</a>
@@ -47,6 +47,10 @@
           <div class="o-char-thumb"><img ng-src="{{matchList[$index].o_img}}" /></div>
           <div class="o-char-name">{{matchList[$index].o_char}}</div>
         </div>
+      </div>
+      <div id="char-sort">
+        <h1 id="sort-box">Sort by Character</h1>
+        <select id="log-chars" ng-model="LogList.character" ng-options="char as char.label for char in characters track by char.charId"></select>
       </div>
     </div>
   </section>

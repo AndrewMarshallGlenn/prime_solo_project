@@ -10,109 +10,109 @@
   <script type="text/javascript" src="/assets/scripts/controllers/input_controller.js"></script>
 </head>
 
-<body ng-controller="InputController">
-<header>
+<body id="input-page" ng-controller="InputController">
+<header class="non-dash">
   <h1 class="title">Input Your Match Data</h1>
   <nav class="navbar">
     <a href="user.html">Dashboard</a>
     <a href="match_log.html">Match Log</a>
   </nav>
 </header>
+<div id="form-wrapper">
+<div id="form-box">
+  <form id="match-form" name="matchForm">
+    <h1 class="form-label">Your Character:</h1>
+    <select class="char-imput" ng-model="matchData.character" ng-options="char as char.label for char in characters track by char.charId"></select><br>
 
-<form name="matchForm">
-  Your Character:
-  <select ng-model="matchData.character" ng-options="char as char.label for char in characters track by char.charId"></select><br>
+    <h1 class="form-label">Opposing Character:</h1>
 
-  Opposing Character:
+    <select class="char-imput" ng-model="matchData.oCharacter" ng-options="char as char.label for char in characters track by char.charId"></select><br>
 
-  <select ng-model="matchData.oCharacter" ng-options="char as char.label for char in characters track by char.charId"></select><br>
+    <h1 class="form-label">Opposing Player's Relative Strength:</h1>
 
-  Opposing Player's Relative Strength:
-  <div>
-    <input type="radio" ng-model="matchData.relStr" value="less">Weaker
-    <input type="radio" ng-model="matchData.relStr" value="same">Even
-    <input type="radio" ng-model="matchData.relStr" value="more">Stronger
-  </div>
+    <div>
+      <input type="radio" ng-model="matchData.relStr" value="less">Weaker
+      <input type="radio" ng-model="matchData.relStr" value="same">Even
+      <input type="radio" ng-model="matchData.relStr" value="more">Stronger
+    </div>
 
-  Round Results:
-  <div>
-  <input type="radio" ng-model="matchData.roundOne" value="win">Win
-  <input type="radio" ng-model="matchData.roundOne" value="loss">Loss
-  </div>
-  <div>
-  <input type="radio" ng-model="matchData.roundTwo" value="win">Win
-  <input type="radio" ng-model="matchData.roundTwo" value="loss">Loss
-  </div>
-  <div ng-show="roundThreeToggle()">
-  <input type="radio" ng-model="matchData.roundThree" value="win">Win
-  <input type="radio" ng-model="matchData.roundThree" value="loss">Loss
-  </div>
+    <h1 id="radio-label">Round Results:</h1>
 
-  AoI Tags:
-  <img ng-src="/assets/images/antiairs.png" ng-if="antiAirs == null" ng-click="antiAirTrue()"/>
-  <img ng-src="/assets/images/antiairs_sel.png" ng-if="antiAirs == '1'" ng-click="antiAirFalse()"/>
-  <img ng-src="/assets/images/execution.png" ng-if="execution == null" ng-click="executionTrue()"/>
-  <img ng-src="/assets/images/execution_sel.png" ng-if="execution == '2'" ng-click="executionFalse()"/>
-  <img ng-src="/assets/images/crossups.png" ng-if="crossUps == null" ng-click="crossUpsTrue()"/>
-  <img ng-src="/assets/images/crossups_sel.png" ng-if="crossUps == '3'" ng-click="crossUpsFalse()"/>
-  <img ng-src="/assets/images/wakeup.png" ng-if="wakeUp == null" ng-click="wakeUpTrue()"/>
-  <img ng-src="/assets/images/wakeup_sel.png" ng-if="wakeUp == '4'" ng-click="wakeUpFalse()"/>
-  <img ng-src="/assets/images/oki.png" ng-if="okizeme == null" ng-click="okizemeTrue()"/>
-  <img ng-src="/assets/images/oki_sel.png" ng-if="okizeme == '5'" ng-click="okizemeFalse()"/>
-  <img ng-src="/assets/images/teching.png" ng-if="teching == null" ng-click="techingTrue()"/>
-  <img ng-src="/assets/images/teching_sel.png" ng-if="teching == '6'" ng-click="techingFalse()"/>
-  <img ng-src="/assets/images/spacing.png" ng-if="spacing == null" ng-click="spacingTrue()"/>
-  <img ng-src="/assets/images/spacing_sel.png" ng-if="spacing == '7'" ng-click="spacingFalse()"/>
-  <img ng-src="/assets/images/footsies.png" ng-if="footsies == null" ng-click="footsiesTrue()"/>
-  <img ng-src="/assets/images/footsies_sel.png" ng-if="footsies == '8'" ng-click="footsiesFalse()"/>
-  <img ng-src="/assets/images/hitconfirms.png" ng-if="hitConfirms == null" ng-click="hitConfirmsTrue()"/>
-  <img ng-src="/assets/images/hitconfirms_sel.png" ng-if="hitConfirms == '9'" ng-click="hitConfirmsFalse()"/>
-  <img ng-src="/assets/images/hilow.png" ng-if="hiLow == null" ng-click="hiLowTrue()"/>
-  <img ng-src="/assets/images/hilow_sel.png" ng-if="hiLow == '10'" ng-click="hiLowFalse()"/>
-  <img ng-src="/assets/images/reads.png" ng-if="reads == null" ng-click="readsTrue()"/>
-  <img ng-src="/assets/images/reads_sel.png" ng-if="reads == '11'" ng-click="readsFalse()"/>
-  <img ng-src="/assets/images/gettingin.png" ng-if="gettingIn == null" ng-click="gettingInTrue()"/>
-  <img ng-src="/assets/images/gettingin_sel.png" ng-if="gettingIn == '12'" ng-click="gettingInFalse()"/>
+    <div class="radio">
+      <span>Round 1 |</span>
+      <label for="rd1win">Win:</label>
+      <input id="rd1win" type="radio" ng-model="matchData.roundOne" name="rdone" value="win">
+      <label for="rd1loss">Loss:</label>
+      <input id="rd1loss" type="radio" ng-model="matchData.roundOne" name="rdone" value="loss">
+    </div>
+    <div class="radio">
+      <span>Round 2 |</span>
+      <label for="rd2win">Win:</label>
+      <input type="radio" id="rd2win" ng-model="matchData.roundTwo" name="rdtwo" value="win">
+      <label for="rd2loss">Loss:</label>
+      <input type="radio" id="rd2loss" ng-model="matchData.roundTwo" name="rdtwo" value="loss">
+    </div>
+    <div class="radio" ng-show="roundThreeToggle()">
+      <span>Round 3 |</span>
+      <label for="rd3win">Win:</label>
+      <input type="radio" id="rd3win" ng-model="matchData.roundThree" name="rdthree" value="win">
+      <label for="rd3loss">Loss:</label>
+      <input type="radio" id="rd3loss" ng-model="matchData.roundThree" name="rdthree" value="loss">
+    </div>
 
+    <h1 class="form-label">AoI Tags:</h1>
+    <div id="aoi-tag-buttons">
+      <img ng-src="/assets/images/antiairs.png" ng-if="antiAirs == null" ng-click="antiAirTrue()"/>
+      <img ng-src="/assets/images/antiairs_sel.png" ng-if="antiAirs == '1'" ng-click="antiAirFalse()"/>
+      <img ng-src="/assets/images/execution.png" ng-if="execution == null" ng-click="executionTrue()"/>
+      <img ng-src="/assets/images/execution_sel.png" ng-if="execution == '2'" ng-click="executionFalse()"/>
+      <img ng-src="/assets/images/crossups.png" ng-if="crossUps == null" ng-click="crossUpsTrue()"/>
+      <img ng-src="/assets/images/crossups_sel.png" ng-if="crossUps == '3'" ng-click="crossUpsFalse()"/>
+      <img ng-src="/assets/images/wakeup.png" ng-if="wakeUp == null" ng-click="wakeUpTrue()"/>
+      <img ng-src="/assets/images/wakeup_sel.png" ng-if="wakeUp == '4'" ng-click="wakeUpFalse()"/>
+      <img ng-src="/assets/images/oki.png" ng-if="okizeme == null" ng-click="okizemeTrue()"/>
+      <img ng-src="/assets/images/oki_sel.png" ng-if="okizeme == '5'" ng-click="okizemeFalse()"/>
+      <img ng-src="/assets/images/teching.png" ng-if="teching == null" ng-click="techingTrue()"/>
+      <img ng-src="/assets/images/teching_sel.png" ng-if="teching == '6'" ng-click="techingFalse()"/>
+      <img ng-src="/assets/images/spacing.png" ng-if="spacing == null" ng-click="spacingTrue()"/>
+      <img ng-src="/assets/images/spacing_sel.png" ng-if="spacing == '7'" ng-click="spacingFalse()"/>
+      <img ng-src="/assets/images/footsies.png" ng-if="footsies == null" ng-click="footsiesTrue()"/>
+      <img ng-src="/assets/images/footsies_sel.png" ng-if="footsies == '8'" ng-click="footsiesFalse()"/>
+      <img ng-src="/assets/images/hitconfirms.png" ng-if="hitConfirms == null" ng-click="hitConfirmsTrue()"/>
+      <img ng-src="/assets/images/hitconfirms_sel.png" ng-if="hitConfirms == '9'" ng-click="hitConfirmsFalse()"/>
+      <img ng-src="/assets/images/hilow.png" ng-if="hiLow == null" ng-click="hiLowTrue()"/>
+      <img ng-src="/assets/images/hilow_sel.png" ng-if="hiLow == '10'" ng-click="hiLowFalse()"/>
+      <img ng-src="/assets/images/reads.png" ng-if="reads == null" ng-click="readsTrue()"/>
+      <img ng-src="/assets/images/reads_sel.png" ng-if="reads == '11'" ng-click="readsFalse()"/>
+      <img ng-src="/assets/images/gettingin.png" ng-if="gettingIn == null" ng-click="gettingInTrue()"/>
+      <img ng-src="/assets/images/gettingin_sel.png" ng-if="gettingIn == '12'" ng-click="gettingInFalse()"/>
+    </div>
+    <h1 class="form-label">Notes:</h1>
 
+    <textarea id="notes-box" ng-model="matchData.notes"></textarea>
 
-
-  <!--<div>-->
-    <!--<label>Anti-Airs:<input type="checkbox" ng-model="matchData.antiAirs"></label>-->
-    <!--<label>Execution:<input type="checkbox" ng-model="matchData.execution"></label>-->
-    <!--<label>Cross-Ups:<input type="checkbox" ng-model="matchData.crossUps"></label>-->
-    <!--<label>Wake Up:<input type="checkbox" ng-model="matchData.wakeUp"></label>-->
-    <!--<label>Okizeme:<input type="checkbox" ng-model="matchData.okizeme"></label>-->
-    <!--<label>Teching:<input type="checkbox" ng-model="matchData.teching"></label><br>-->
-    <!--<label>Spacing:<input type="checkbox" ng-model="matchData.spacing"></label>-->
-    <!--<label>Footsies: <input type="checkbox" ng-model="matchData.footsies"></label>-->
-    <!--<label>Hit Confirms:<input type="checkbox" ng-model="matchData.hitConfirms"></label>-->
-    <!--<label>Hi-Low:<input type="checkbox" ng-model="matchData.hiLow"></label>-->
-    <!--<label>Reads:<input type="checkbox" ng-model="matchData.reads"></label>-->
-    <!--<label>Getting In:<input type="checkbox" ng-model="matchData.gettingIn"></label>-->
-  <!--</div>-->
-  Notes:<br>
-  <textarea ng-model="matchData.notes"></textarea>
-
-  <button ng-click="postMatch()">Submit</button>
+    <button id="submit-match" ng-click="postMatch()">Submit</button>
 </form>
-
-
-{{matchData.antiAirs}}<br>
-{{matchData.execution}}<br>
-{{matchData.crossUps}}<br>
-{{matchData.wakeUp}}<br>
-{{matchData.okizeme}}<br>
-{{matchData.teching}}<br>
-{{matchData.spacing}}<br>
-{{matchData.footsies}}<br>
-{{matchData.hitConfirms}}<br>
-{{matchData.hiLow}}<br>
-{{matchData.reads}}<br>
-{{matchData.gettingIn}}<br>
-<p ng-show="matchResult()">{{matchData.winLoss}}</p>
-{{matchData.notes}}
-{{matchData.antiAirs}}
-{{matchData.footsies}}
+</div>
+  <div id="user-selections">
+    <h1>Your Selections:</h1>
+    <h2 class="sel-titles">Your Character:</h2>
+    <span class="sel-show">{{matchData.character.label}}<br></span>
+    <h2 class="sel-titles">Your Opponent:</h2>
+    <span class="sel-show">{{matchData.oCharacter.label}}<br></span>
+    <h2 class="sel-titles">There Relative Strength:</h2>
+    <span class="sel-show">{{matchData.relStr}}<br></span>
+    <b>Round One:</b>
+    <span class="sel-show">{{matchData.roundOne}}<br></span>
+    <b>Round Two:</b>
+    <span class="sel-show">{{matchData.roundTwo}}<br></span>
+    <span ng-show="roundThreeToggle()">
+    <b>Round Three:</b>
+    <span class="sel-show">{{matchData.roundThree}}<br></span></span>
+    <h2 class="sel-titles">The Outcome:</h2>
+    <span class="sel-show" ng-show="matchResult()">{{matchData.winLoss}}</span>
+    <h2 class="sel-titles">Areas for Improvement:</h2>
+    <span id="tags-show">{{aoiTagsString}}<br></span>
+  </div>
 </body>
 </html>

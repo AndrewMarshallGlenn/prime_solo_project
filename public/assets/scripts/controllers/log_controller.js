@@ -5,6 +5,7 @@ myApp.controller('LogController', ['$scope', 'DataFactory', function($scope, Dat
   var userId = '';
   $scope.matchList = [];
   $scope.characters = dataFactory.charList();
+  $scope.LogList = '';
 
   dataFactory.getUser().then(function(){
     userId = dataFactory.userIdNumber();

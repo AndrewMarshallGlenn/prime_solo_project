@@ -6,7 +6,7 @@
 .instructions {
     background-color: #333333;
     color: #DDDDDD;
-    width: 1298px;
+    width: 1292px;
 }
 nav a:link, a:visited {
     background-color: #f44336;
@@ -104,7 +104,7 @@ body{
     border: 3px solid black;
     height: 108px;
     width: 1000px;
-    margin: 10px auto 10px auto;
+    margin: 10px 400px 10px auto;
     overflow: hidden;
     opacity: .90;
     background-color: lightgoldenrodyellow;
@@ -239,8 +239,90 @@ h2{
     opacity: 1;
 }
 #log-page{
+    background-image: url("/assets/images/sfv_charlie_ryu.png");
+}
+header{
+    background-color: #333333;
+    color: #DDDDDD;
+    width: 1292px;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+#char-sort{
+    position: fixed;
+    top: 200px;
+    left: 1150px;
+    width: 300px;
+}
+#sort-box{
+    color: white;
+    text-shadow: 1px 1px 3px yellow;
+}
+#match-form{
+
+    padding: 20px;
+}
+.non-dash{
+    border-bottom: 3px solid black;
+}
+#log-chars{
+    width: 190px;
+}
+.char-imput{
+    width: 250px;
+}
+.form-label{
+    font-size: 24px;
+    display: inline-block;
+}
+#form-box{
+    width: 800px;
+    height: 600px;
+    display: inline-block;
+    border-right: 3px solid black;
+    background-color: limegreen;
+}
+#user-selections{
+    width: 445px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 600px;
+    margin: auto;
+    background-color: cornflowerblue;
+}
+.sel-show{
+    font-size: 24px;
+}
+#form-wrapper{
+    width: 1292px;
+    height: 600px;
+    border: 3px solid black;
+    margin: 10px auto;
+    opacity: .9;
+}
+#aoi-tag-buttons{
+    margin-left: 50px;
+}
+#notes-box{
+    vertical-align: bottom;
+    height: 100px;
+    width: 300px;
+}
+#radio-label{
+    display: inline-block;
+}
+#tags-show:{
+    font-size: 14px;
+}
+#input-page{
     background-image: url("/assets/images/fang_wallpaper.png");
 }
-.navbar{
-
+.sel-titles{
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

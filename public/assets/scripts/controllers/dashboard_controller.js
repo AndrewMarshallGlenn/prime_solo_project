@@ -5,8 +5,16 @@ myApp.controller('DashboardController', ['$scope', 'DataFactory', function($scop
   console.log('Im in dashboard controller');
 
   var dataFactory = DataFactory;
-  $scope.playerStats = 'player Stats';
+  $scope.pWinPercent = '';
+  $scope.pWinPercent10 = '';
+  $scope.pWinPercent25 = '';
   $scope.charactersTopTag = '';
+  $scope.topUsed = '';
+  $scope.topUsed2 = '';
+  $scope.topUsed3 = '';
+  $scope.topUsedImg = '';
+  $scope.topUsed2Img = '';
+  $scope.topUsed3Img = '';
 
   $scope.characters = [
     {path:  "/assets/images/birdie.png",
@@ -43,7 +51,25 @@ myApp.controller('DashboardController', ['$scope', 'DataFactory', function($scop
      link: '#zangief'}
   ];
 
+  dataFactory.getUser().then(function(){
+    dataFactory.getPlayerWinPercent().then(function(){
+      $scope.pWinPercent = dataFactory.playerWinPercent();
+    });
+    dataFactory.getPlayerWinPercentLastN().then(function(){
+      $scope.pWinPercent10 = dataFactory.playerWinPercent10();
+      $scope.pWinPercent25 = dataFactory.playerWinPercent25();
+    });
+  });
 
-
+  dataFactory.getUser().then(function(){
+    dataFactory.getTop3Used().then(function(){
+      $scope.topUsed = dataFactory.mostUsed();
+      $scope.topUsed2 = dataFactory.mostUsed2();
+      $scope.topUsed3 = dataFactory.mostUsed3();
+      $scope.topUsedImg = dataFactory.mostUsedImg();
+      $scope.topUsed2Img = dataFactory.mostUsed2Img();
+      $scope.topUsed3Img = dataFactory.mostUsed3Img();
+    });
+  });
 
 }]);

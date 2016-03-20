@@ -72,11 +72,68 @@ router.get('/chartag/:character/:id', function(req, res) {
   });
 });
 
-router.get('/stats/:id', function(req, res) {
+router.get('/winpercent/:id', function(req, res) {
   var results = [];
 
   pg.connect(connect, function(err, client, done) {
-    var query = client.query('SELECT * FROM match_data WHERE user_id = $1', [req.params.id]);
+    var query = client.query('Select outcome, (Count(outcome)* 100 / (Select Count(*) From match_data)) as win_percent '+
+    'From match_data '+
+    'WHERE user_id = $1 '+
+    'Group By outcome', [req.params.id]);
+
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    // close connection
+    query.on('end', function() {
+      done();
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log(err);
+    }
+  });
+});
+
+router.get('/winpercentlastn/:id', function(req, res) {
+  var results = [];
+
+  pg.connect(connect, function(err, client, done) {
+    var query = client.query('Select outcome '+
+    'From match_data '+
+    'WHERE user_id = $1 '+
+    'ORDER BY match_data.id DESC LIMIT 25', [req.params.id]);
+
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    // close connection
+    query.on('end', function() {
+      done();
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log(err);
+    }
+  });
+});
+
+router.get('/top3/:id', function(req, res) {
+  var results = [];
+
+  pg.connect(connect, function(err, client, done) {
+    var query = client.query('Select characters.character, count(*) as count, characters.image '+
+    'From match_data '+
+    'JOIN characters ON match_data.character_id = characters.id '+
+    'WHERE user_id = $1 '+
+    'GROUP BY character, image '+
+    'ORDER BY count DESC LIMIT 3;', [req.params.id]);
 
     // Stream results back one row at a time
     query.on('row', function(row) {

@@ -3,8 +3,17 @@ myApp.factory('DataFactory', ['$http', function($http) {
     var facMatchData = undefined;
     var facUserIdNumber = undefined;
     var facUserName = undefined;
-    var facStatData = undefined;
     var facTopTag = undefined;
+    var facPlayerWinPercent = undefined;
+    var facPlayerWinPercent10 = undefined;
+    var facPlayerWinPercent25 = undefined;
+    var facMostUsed = '';
+    var fac2MostUsed = '';
+    var fac3MostUsed = '';
+    var facMostUsedImg = '';
+    var fac2MostUsedImg = '';
+    var fac3MostUsedImg = '';
+    var facLast25 = undefined;
     var facAoiTags = [];
     var facCharList = [
         {charId: '1', label: 'Birdie'},
@@ -45,6 +54,54 @@ myApp.factory('DataFactory', ['$http', function($http) {
             var tagList = response.data;
             facTopTag = tagList[0].tags;
             console.log('Async data response:', tagList);
+        });
+        return promise;
+    };
+
+    var facGetTop3Used = function(){
+        var promise = $http.get('/data/top3/' + facUserIdNumber).then(function(response) {
+            var top3 = response.data;
+            facMostUsed = top3[0].character;
+            fac2MostUsed = top3[1].character;
+            fac3MostUsed = top3[2].character;
+            facMostUsedImg = top3[0].image;
+            fac2MostUsedImg = top3[1].image;
+            fac3MostUsedImg = top3[2].image;
+            console.log('Async data response:', top3);
+        });
+        return promise;
+    };
+
+    var facGetPlayerWinPercent = function() {
+        console.log('getting data from server for id: ', facUserIdNumber);
+        var promise = $http.get('/data/winpercent/' + facUserIdNumber).then(function(response) {
+            facPlayerWinPercent = response.data[0].win_percent;
+            console.log('Async data response, facPlayerWinPercent: ', facPlayerWinPercent);
+        });
+        return promise;
+    };
+
+    var facGetPlayerWinPercentLastN = function() {
+        console.log('getting data from server for id: ', facUserIdNumber);
+        var promise = $http.get('/data/winpercentlastn/' + facUserIdNumber).then(function(response) {
+            facLast25 = response.data;
+            console.log('Async data response, facLast25: ', facLast25);
+            var fac10 = 0;
+            var fac25 = 0;
+            for(var i = 0; i < facLast25.length; i++){
+                if(facLast25[i].outcome == 'win'){
+                    fac25++;
+                }
+            }
+            console.log(fac25);
+            facPlayerWinPercent25 = (fac25 / 25) * 100;
+            for(var j = 0; j < 10; j++){
+                if(facLast25[j].outcome == 'win'){
+                    fac10++;
+                }
+            }
+            console.log(fac10);
+            facPlayerWinPercent10 = (fac10 / 10) * 100;
         });
         return promise;
     };
@@ -94,6 +151,33 @@ myApp.factory('DataFactory', ['$http', function($http) {
         userIdNumber: function() {
             return facUserIdNumber;
         },
+        playerWinPercent: function() {
+            return facPlayerWinPercent;
+        },
+        playerWinPercent10: function() {
+            return facPlayerWinPercent10;
+        },
+        playerWinPercent25: function() {
+            return facPlayerWinPercent25;
+        },
+        mostUsed3: function() {
+            return fac3MostUsed;
+        },
+        mostUsed2: function() {
+            return fac2MostUsed;
+        },
+        mostUsed: function() {
+            return facMostUsed;
+        },
+        mostUsed3Img: function() {
+            return fac3MostUsedImg;
+        },
+        mostUsed2Img: function() {
+            return fac2MostUsedImg;
+        },
+        mostUsedImg: function() {
+            return facMostUsedImg;
+        },
         topTag: function() {
             return facTopTag;
         },
@@ -114,6 +198,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
         },
         getMostCommonTag: function(character) {
             return facGetMostCommonTag(character);
+        },
+        getTop3Used: function() {
+            return facGetTop3Used();
+        },
+        getPlayerWinPercent: function() {
+            return facGetPlayerWinPercent();
+        },
+        getPlayerWinPercentLastN: function() {
+            return facGetPlayerWinPercentLastN();
         },
         pushToFacAoiTags: function(newItem) {
             return facPushToFacAoiTags(newItem);

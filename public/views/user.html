@@ -16,22 +16,22 @@
 
 <body ng-app="myApp">
   <header>
-  <nav>
-    <a href="match_input.html">Match Input Form</a>
-    <a href="match_log.html">Match Log</a>
-  </nav>
-</header>
+    <nav>
+      <a href="match_input.html">Match Input Form</a>
+      <a href="match_log.html">Match Log</a>
+    </nav>
+  </header>
 
   <div class="instructions" ng-controller="UserController">
-  <div class="container">
-    <h1 id="welcome" class="lead">Welcome, {{playerName}}!</h1>
+    <div class="container">
+      <h1 id="welcome" class="lead">Welcome, {{playerName}}!</h1>
+    </div>
   </div>
-</div>
-  <div ng-view id="stat-window"></div>
 
-  <div id="dashboard" ng-controller="DashboardController">
 
-    <div id="player-stats">
+  <div id="dashboard">
+
+    <div id="player-stats" ng-controller="DashboardController">
       <h2>{{pWinPercent}}</h2>
       <h2>{{pWinPercent10}}</h2>
       <h2>{{pWinPercent25}}</h2>
@@ -42,12 +42,14 @@
       <h2>{{topUsed3}}</h2>
       <img ng-src="{{topUsed3Img}}"/>
     </div>
-
-    <div ng-repeat="char in characters" class="char-stat-box">
-      <div><a href="{{char.link}}"><img ng-src="{{char.path}}"/></a></div>
+    <div id="char-boxes">
+      <div ng-controller="DashboardController">
+        <div ng-repeat="char in characters" class="char-stat-box">
+          <div><a href="{{char.link}}"><img ng-src="{{char.path}}"/></a></div>
+        </div>
+      </div>
     </div>
-
-    <div>{{charactersTopTag}}</div>
+    <div ng-view id="stat-window"></div>
 
   </div>
 </body>

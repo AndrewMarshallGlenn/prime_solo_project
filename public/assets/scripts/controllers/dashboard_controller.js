@@ -8,7 +8,6 @@ myApp.controller('DashboardController', ['$scope', 'DataFactory', function($scop
   $scope.pWinPercent = '';
   $scope.pWinPercent10 = '';
   $scope.pWinPercent25 = '';
-  $scope.charactersTopTag = '';
   $scope.topUsed = '';
   $scope.topUsed2 = '';
   $scope.topUsed3 = '';

@@ -44,7 +44,8 @@ body{
     margin: 0 auto;
 }
 #dashboard{
-    width: 100%;
+    width: 1272px;
+    height: 600px;
     margin: 10px auto 10px auto;
     border: 2px solid black;
     overflow: auto;
@@ -53,65 +54,142 @@ body{
     border-right-color: black;
     border-right-width: 2px;
     border-right-style: solid;
-    height: 100%;
-    min-height: 600px;
-    width: 33%;
-    min-width: 200px;
+    height: 600px;
+    width: 400px;
     float: left;
+    margin-right: 3px;
 }
-.char-stat-box{
-    float: left;
-    border: 1px solid black;
-    height: 100px;
-    width: 100px;
-    margin: 3px;
+.char-boxes{
+    height: 300px;
+    border-bottom: 1px solid black;
+
 }
 .LogEntry{
     border: 3px solid black;
-    height: 105px;
-    width: 80%;
+    height: 108px;
+    width: 1000px;
     margin: 10px auto 10px auto;
-}
-.char-thumb{
-    height: 86px;
-    width: 75px;
-    border-width: 0 1px 0 0;
-    border-color: black;
-    border-style: solid;
-}
-.o-char-thumb{
-    height: 86px;
-    width: 75px;
-    border-color: black;
-    border-style: solid;
-    border-width: 0 0 0 1px;
-    float: right;
-    clear: right;
+    overflow: hidden;
 }
 .thumb-img{
     height: 86px;
     width: 75px;
+    border-bottom: 1px solid black;
 }
 .char-name{
     height: 18px;
     width: 75px;
     text-align: center;
     clear: left;
-    border-width: 1px 1px 0 0;
-    border-style: solid;
-    border-color: black;
+    padding-bottom: 2px;
+}
+#stat-window{
+    border: 1px solid black;
+    height: 373px;
+    width: 858px;
+    margin-left: 407px;
+}
+h2{
+    font-size: medium;
+}
+.rounds{
+    height: 108px;
+    width: 100px;
+    vertical-align: top;
+    display: inline-block;
+    border-right: 3px solid black;
+    overflow: hidden;
+}
+.rd-txt{
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    height: 108px;
+}
+.char-block{
+    display: inline-block;
+    border-right: 3px solid black;
+    overflow: hidden;
+    height: 108px;
+}
+.rd-one{
+    border-bottom: 1px solid black;
+    width: 100px;
+    height: 35px;
+}
+.rd-two{
+    border-bottom: 1px solid black;
+    width: 100px;
+    height: 35px;
+}
+.rd-three{
+    width: 100px;
+    height: 35px;
+}
+.outcome{
+    display: inline-block;
+    border-right: 3px solid black;
+    width: 75px;
+    height: 88px;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 20px;
+}
+#aoi-tags{
+    display: inline-block;
+    border-right: 3px solid black;
+    width: 250px;
+    height: 108px;
+    overflow: hidden;
+    margin-top: 0px;
+    padding: 0px;
+}
+.aoi-list{
+    font-size: large;
+    margin: 0px;
+    padding: 0px;
+}
+.notes{
+    display: inline-block;
+    border-right: 3px solid black;
+    width: 300px;
+    height: 108px;
+    overflow: hidden;
+}
+.orl-block{
+    display: inline-block;
+    width: 83px;
+    height: 108px;
+    overflow: hidden;
+}
+.rel-str{
+    display: inline-block;
+    width: 83px;
+    height: 19px;
+    overflow: hidden;
+    text-align: center;
+}
+.o-char-block{
+    display: inline-block;
+    overflow: hidden;
+    height: 108px;
+    border-left: 3px solid black;
 }
 .o-char-name{
     height: 18px;
     width: 75px;
-    border-style: solid;
-    border-width: 0 0 1px 1px;
-    border-color: black;
     text-align: center;
     float: right;
+    clear: right;
+    padding-bottom: 2px;
 }
-#stat-window{
-    border: 1px solid black;
-    height: 400px;
-    width: 50%;
+.o-char-thumb{
+    float: right;
+    height: 86px;
+    width: 75px;
+    border-bottom: 1px solid black;
+}
+.orl-head{
+    border-bottom: 1px solid black;
+    text-align: center;
 }

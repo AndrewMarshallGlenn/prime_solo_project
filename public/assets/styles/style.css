@@ -6,8 +6,23 @@
 .instructions {
     background-color: #333333;
     color: #DDDDDD;
+    width: 1298px;
+}
+nav a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 14px 25px;
 }
 
+nav a:hover {
+background-color: red;
+}
+#char-boxes a{
+
+}
 #entryForm {
     margin-top: 14px;
 }
@@ -78,9 +93,12 @@ body{
     float: left;
     margin-left: 8px;
     margin-top: 8px;
+    background-color: lightyellow;
+    opacity: .9;
 }
 .view-links{
     margin-left: 12px;
+    margin-top: 8px;
 }
 .LogEntry{
     border: 3px solid black;
@@ -222,4 +240,7 @@ h2{
 }
 #log-page{
     background-image: url("/assets/images/fang_wallpaper.png");
+}
+.navbar{
+
 }

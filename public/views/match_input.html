@@ -11,7 +11,13 @@
 </head>
 
 <body ng-controller="InputController">
-<h1>Input Your Match Data</h1>
+<header>
+  <h1 class="title">Input Your Match Data</h1>
+  <nav class="navbar">
+    <a href="user.html">Dashboard</a>
+    <a href="match_log.html">Match Log</a>
+  </nav>
+</header>
 
 <form name="matchForm">
   Your Character:
@@ -108,10 +114,5 @@
 {{matchData.notes}}
 {{matchData.antiAirs}}
 {{matchData.footsies}}
-<!--<main ng-view></main>-->
-<div>
-  <a href="user.html">Dashboard</a>
-  <a href="match_log.html">Match Log</a>
-</div>
 </body>
 </html>

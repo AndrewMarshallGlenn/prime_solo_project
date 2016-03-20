@@ -16,18 +16,16 @@
 
 <body id="user-page" ng-app="myApp">
   <header>
-    <nav>
-      <a href="match_input.html">Match Input Form</a>
-      <a href="match_log.html">Match Log</a>
-    </nav>
-  </header>
-
-  <div class="instructions" ng-controller="UserController">
-    <div class="container">
-      <h1 id="welcome" class="lead">Welcome, {{playerName}}!</h1>
+    <div class="instructions" ng-controller="UserController">
+      <div class="container">
+        <h1 class="title">Welcome, {{playerName}}!</h1>
+        <nav class="navbar">
+          <a href="match_input.html">Match Input Form</a>
+          <a href="match_log.html">Match Log</a>
+        </nav>
+      </div>
     </div>
-  </div>
-
+  </header>
 
   <div id="dashboard">
 

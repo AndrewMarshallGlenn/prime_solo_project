@@ -38,6 +38,43 @@ router.get('/:id', function(req, res) {
   });
 });
 
+router.get('/chardata/:character/:id', function(req, res) {
+  var results = [];
+  console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+  console.log('get character:', req.params.character);
+  console.log('get id:', req.params.id);
+
+  pg.connect(connect, function(err, client, done) {
+    var query = client.query('SELECT match_data.time, match_data.o_rel_str, match_data.rd_one, match_data.rd_two, match_data.rd_three, '+
+      'match_data.outcome, match_data.notes, player.character, player.image, opponent.character AS o_char, opponent.image AS o_img, '+
+      'string_agg(improvement_tags.tags, \', \') '+
+      'FROM match_data ' +
+      'LEFT JOIN tags_match ON match_data.id = tags_match.match_id '+
+      'LEFT JOIN improvement_tags ON tags_match.tags_id = improvement_tags.id '+
+      'JOIN characters AS player ON player.id = match_data.character_id  '+
+      'JOIN characters AS opponent ON opponent.id = match_data.o_character_id '+
+      'WHERE user_id = $1 AND match_data.character_id = $2' +
+      'GROUP BY match_data.id, player.character, player.image, opponent.character, opponent.image '+
+      'ORDER BY match_data.time DESC;', [req.params.id, req.params.character]);
+
+
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    // close connection
+    query.on('end', function() {
+      done();
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log('select error: ', err);
+    }
+  });
+});
+
 router.get('/chartag/:character/:id', function(req, res) {
   var results = [];
 
@@ -46,13 +83,13 @@ router.get('/chartag/:character/:id', function(req, res) {
 
   pg.connect(connect, function(err, client, done) {
     var query = client.query('SELECT COUNT(tags_match.match_id) AS count, tags_match.tags_id, improvement_tags.tags '+
-    'FROM tags_match '+
-    'JOIN match_data ON tags_match.match_id = match_data.id '+
-    'JOIN improvement_tags ON tags_match.tags_id = improvement_tags.id '+
-    'JOIN users ON match_data.user_id = users.id '+
-    'WHERE match_data.character_id = $1 AND users.id = $2 '+
-    'GROUP BY tags_match.tags_id, improvement_tags.tags '+
-    'ORDER BY count DESC', [req.params.character ,req.params.id]);
+      'FROM tags_match '+
+      'JOIN match_data ON tags_match.match_id = match_data.id '+
+      'JOIN improvement_tags ON tags_match.tags_id = improvement_tags.id '+
+      'JOIN users ON match_data.user_id = users.id '+
+      'WHERE match_data.character_id = $1 AND users.id = $2 '+
+      'GROUP BY tags_match.tags_id, improvement_tags.tags '+
+      'ORDER BY count DESC', [req.params.character ,req.params.id]);
 
 
     // Stream results back one row at a time

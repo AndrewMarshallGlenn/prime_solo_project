@@ -50,7 +50,8 @@
       </div>
       <div id="char-sort">
         <h1 id="sort-box">Sort by Character</h1>
-        <select id="log-chars" ng-model="LogList.character" ng-options="char as char.label for char in characters track by char.charId"></select>
+        <select id="log-chars" ng-model="character" ng-options="char as char.label for char in characters track by char.charId"></select>
+        <button id="sort-button" ng-click="charData()">Sort</button>
       </div>
     </div>
   </section>

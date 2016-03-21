@@ -115,6 +115,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
         return promise;
     };
 
+    var facGetCharMatchData = function(char) {
+        console.log('getting data from server for id: ', facUserIdNumber);
+        var promise = $http.get('/data/chardata/' + char + '/' + facUserIdNumber).then(function(response) {
+            facMatchData = response.data;
+            console.log('Async data response:', facMatchData);
+        });
+        return promise;
+    };
+
     var facPostMatchData = function(match) {
         console.log('posting match data');
         var promise = $http.post('/data', match).then(function(response) {
@@ -142,6 +151,46 @@ myApp.factory('DataFactory', ['$http', function($http) {
         return promise;
     };
 
+    function facTagSwitch(tag){
+        switch(tag) {
+            case 'anti_airs':
+                result = "/assets/images/antiairs.png";
+                return result;
+            case 'execution':
+                result = "/assets/images/execution.png";
+                return result;
+            case 'cross_ups':
+                result = "/assets/images/crossups.png";
+                return result;
+            case 'wake_up':
+                result = "/assets/images/wakeup.png";
+                return result;
+            case 'okizeme':
+                result = "/assets/images/oki.png";
+                return result;
+            case 'teching':
+                result = "/assets/images/teching.png";
+                return result;
+            case 'spacing':
+                result = "/assets/images/spacing.png";
+                return result;
+            case 'footsies':
+                result = "/assets/images/footsies.png";
+                return result;
+            case 'hit_confirms':
+                result = "/assets/images/hitconfirms.png";
+                return result;
+            case 'hi_low':
+                result = "/assets/images/hilow.png";
+                return result;
+            case 'reads':
+                result = "/assets/images/reads.png";
+                return result;
+            case 'getting_in':
+                result = "/assets/images/gettingin.png";
+                return result;
+        }
+    }
 
     //PUBLIC
     var dataFactoryOutput = {
@@ -196,6 +245,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
         getMatchData: function() {
             return facGetMatchData();
         },
+        getCharMatchData: function(char) {
+            return facGetCharMatchData(char);
+        },
         getMostCommonTag: function(character) {
             return facGetMostCommonTag(character);
         },
@@ -216,6 +268,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
         },
         postMatchData: function(match) {
             return facPostMatchData(match);
+        },
+        tagSwitch: function(tag) {
+            return facTagSwitch(tag);
         }
     };
 
